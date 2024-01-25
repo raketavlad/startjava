@@ -3,22 +3,22 @@ public class VariablesTheme {
     public static void main(String[] args) {
         // первая задача
         System.out.println("1. Вывод характеристик компьютера");
-        byte hddMemory = 1;
-        System.out.println("Память жесткого диска: " + hddMemory + " TB."); 
-        short ramMemory = 16;
-        System.out.println("Оперативная память: " + ramMemory + " GB.");
-        int sddMemory = 128;
-        System.out.println("Память твёрдотельного накопителя: " + sddMemory + " GB.");
-        long videoMemory = 12;
-        System.out.println("Объем видеопамяти: " + videoMemory + " GB.");
+        byte hddSize = 1;
+        System.out.println("Память жесткого диска: " + hddSize + " TB."); 
+        short ramVolume = 16;
+        System.out.println("Оперативная память: " + ramVolume + " GB.");
+        int sddSize = 128;
+        System.out.println("Память твёрдотельного накопителя: " + sddSize + " GB.");
+        long vramVolume = 12;
+        System.out.println("Объем видеопамяти: " + vramVolume + " GB.");
         float cpuFrequency = 2.6f;
         System.out.println("Базовая частота процессора: " + cpuFrequency + " GHz");
         double ramFrequency = 3600;
         System.out.println("Тактовая частота оперативной памяти: " + ramFrequency + " MHz");
         char coresQuantity = '4';
         System.out.println("Количество ядер процессора: " + coresQuantity);
-        boolean isPower = true;
-        System.out.println("Компьютер включен? " + isPower);
+        boolean isOn = true;
+        System.out.println("Компьютер включен? " + isOn);
 
         // вторая задача
         System.out.println("\n2. Расчёт стоимости товара со скидкой");
@@ -67,71 +67,72 @@ public class VariablesTheme {
 
         // пятая задача
         System.out.println("\n5. Перестановка значений переменных");
-        int first = 2;
-        int second = 5;
+        int a = 2;
+        int b = 5;
         System.out.println("Перестановка значений с помощью третьей переменной");
-        System.out.println("До перестановки: первая переменная = " + first + 
-                "; вторая переменная = " + second);
-        int storage = first;
-        first = second;
-        second = storage;
-        System.out.println("После перестановки: первая переменная = " + first + 
-                "; вторая переменная = " + second);
+        System.out.println("До перестановки: первая переменная = " + a + 
+                "; вторая переменная = " + b);
+        int swap = a;
+        a = b;
+        b = swap;
+        System.out.println("После перестановки: первая переменная = " + a + 
+                "; вторая переменная = " + b);
 
         System.out.println("\nПерестановка значений с помощью арифметических операций");
-        System.out.println("До перестановки: первая переменная = " + first + 
-                "; вторая переменная = " + second);
-        first += second;
-        second = first - second;
-        first -= second;
-        System.out.println("После перестановки: первая переменная = " + first + 
-                "; вторая переменная = " + second);
+        System.out.println("До перестановки: первая переменная = " + a + 
+                "; вторая переменная = " + b);
+        a += b;
+        b = a - b;
+        a -= b;
+        System.out.println("После перестановки: первая переменная = " + a + 
+                "; вторая переменная = " + b);
 
         System.out.println("\nПерестановка значений с помощью побитовой операции ^");
-        System.out.println("До перестановки: первая переменная = " + first + 
-                "; вторая переменная = " + second);
-        second = first ^ second;
-        first = first ^ second;
-        second = second ^ first;
-        System.out.println("После перестановки: первая переменная = " + first + 
-                "; вторая переменная = " + second);
+        System.out.println("До перестановки: первая переменная = " + a + 
+                "; вторая переменная = " + b);
+        b ^= a;
+        a ^= b;
+        b ^= a;
+        System.out.println("После перестановки: первая переменная = " + a + 
+                "; вторая переменная = " + b);
 
         // шестая задача
         System.out.println("\n6. Вывод символов и их кодов");
-        char symbol36 = '$';
-        System.out.println("Код символа: " + (int) symbol36 + ". Символ: " + symbol36);
-        char symbol42 = '*';
-        System.out.println("Код символа: " + (int) symbol42 + ". Символ: " + symbol42);
-        char symbol64 = '@';
-        System.out.println("Код символа: " + (int) symbol64 + ". Символ: " + symbol64);
-        char symbol124 = '|';
-        System.out.println("Код символа: " + (int) symbol124 + ". Символ: " + symbol124);
-        char symbol126 = '~';
-        System.out.println("Код символа: " + (int) symbol126 + ". Символ: " + symbol126);
+        char dollar = '$';
+        System.out.println("Код символа: " + (int) dollar + ". Символ: " + dollar);
+        char asterisk = '*';
+        System.out.println("Код символа: " + (int) asterisk + ". Символ: " + asterisk);
+        char atSign = '@';
+        System.out.println("Код символа: " + (int) atSign + ". Символ: " + atSign);
+        char verticalBar = '|';
+        System.out.println("Код символа: " + (int) verticalBar + ". Символ: " + verticalBar);
+        char tilde = '~';
+        System.out.println("Код символа: " + (int) tilde + ". Символ: " + tilde);
 
         // седьмая задача
         System.out.println("\n7. Вывод в консоль ASCII-арт Дюка");
-        char symbol40 = '(';
-        char symbol41 = ')';
-        char symbol47 = '/';
-        char symbol92 = '\\';
-        char symbol95 = '_';
-        System.out.println("    " + symbol47 + symbol92);
-        System.out.println("   " + symbol47 + "  " + symbol92);
-        System.out.println("  " + symbol47 + symbol95 + symbol40 + " " + symbol41 + symbol92);
-        System.out.println(" " + symbol47 + "      " + symbol92);
-        System.out.println("" + symbol47 + symbol95 + symbol95 + symbol95 + symbol95 + symbol47 + 
-                symbol92 + symbol95 + symbol95 + symbol92);
+        char leftParenthesis = '(';
+        char rightParenthesis = ')';
+        char slash = '/';
+        char backslash = '\\';
+        char underscore = '_';
+        System.out.println("    " + slash + backslash);
+        System.out.println("   " + slash + "  " + backslash);
+        System.out.println("  " + slash + underscore + leftParenthesis + " " + rightParenthesis +
+                backslash);
+        System.out.println(" " + slash + "      " + backslash);
+        System.out.println("" + slash + underscore + underscore + underscore + underscore + slash + 
+                backslash + underscore + underscore + backslash);
 
         // восьмая задача
         System.out.println("\n8. Вывод количества сотен, десятков и единиц числа");
-        int number123 = 123;
-        int quantityHundreds = number123 / 100;
-        int quantityTens = (number123 - quantityHundreds * 100) / 10;
-        int quantityOnes = number123 - (quantityHundreds * 100 + quantityTens * 10);
+        int originNumber = 123;
+        int quantityHundreds = originNumber / 100;
+        int quantityTens = originNumber % 100 / 10;
+        int quantityOnes = originNumber % 10;
         int sumDigits = quantityHundreds + quantityTens + quantityOnes;
         int productDigits = quantityHundreds * quantityTens * quantityOnes;
-        System.out.println("Число " + number123 + " содержит:\n  сотен - " + quantityHundreds +
+        System.out.println("Число " + originNumber + " содержит:\n  сотен - " + quantityHundreds +
                 "\n  десятков - " + quantityTens + "\n  единиц - " + quantityOnes +
                 "\nСумма его цифр = " + sumDigits + "\nПроизведение = " + productDigits);
         
@@ -140,7 +141,7 @@ public class VariablesTheme {
         int allSeconds = 86399;
         int hours = allSeconds / 3600;
         int minutes = allSeconds % 3600 / 60;
-        int seconds = allSeconds % 3600 % 60;
+        int seconds = allSeconds % 60;
         System.out.println("Точное время: " + hours + ":" + seconds + ":" + seconds); 
     }
 }
