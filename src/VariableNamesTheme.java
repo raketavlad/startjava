@@ -128,25 +128,25 @@ public class VariableNamesTheme {
         boolean isPcOn = true;
         System.out.println("Ты включил компьютер? - " + isPcOn);
 
-        // информация о наличии в массиве равных цифры
-        boolean isNumbersEqual = false;
-        System.out.println("В этом массиве есть одинаковые цифры? - " + isNumbersEqual);
+        // информация о наличии равных цифр
+        boolean isDigitsEqual = false;
+        System.out.println("В этом массиве есть одинаковые цифры? - " + isDigitsEqual);
 
-        // информация о создании новой строки
-        boolean isLineCreated = true;
-        System.out.println("Строка создалась? - " + isLineCreated);
+        // информация о создании чего либо
+        boolean isCreated = true;
+        System.out.println("Строка создалась? - " + isCreated);
 
-        // информация о заполненности поля
-        boolean isFieldFilled = false;
-        System.out.println("Ты заполнил поле Имя? - " + isFieldFilled);
+        // что-либо пустое
+        boolean isEmpty = false;
+        System.out.println("Ты заполнил поле Имя? - " + isEmpty);
 
-        // информация о активности кнопки
-        boolean isButtonActive = true;
-        System.out.println("Ты можешь нажать на эту кнопку? - " + isButtonActive);
+        // что-либо активное
+        boolean isActive = true;
+        System.out.println("Ты можешь нажать на эту кнопку? - " + isActive);
 
         // информация о том, является ли объект новым
-        boolean isObjectNew = true;
-        System.out.println("Этот объект был создан сегодня? - " + isObjectNew);
+        boolean isNew = true;
+        System.out.println("Этот объект был создан сегодня? - " + isNew);
 
         // информация о том, действительная ли электронная почта или нет
         boolean isEmailValid = false;
