@@ -46,43 +46,45 @@ public class IfElseStatementTheme {
 
         // третья задача
         System.out.println("\n3. Проверка числа");
-        int num3 = -51;
-        if (num3 == 0) {
-            System.out.println("Число равно нулю!");
-        } else {
-            if (num3 < 0) {
-                if (num3 % 2 == 0) {
-                    System.out.println(num3 + " является отрицательным и четным");
-                } else {
-                    System.out.println(num3 + " является отрицательным и нечетным");
-                }
+        int num = 51;
+        String output = new String();
+        if (num != 0) {
+            if (num > 0) {
+                output += " является положительным";
             } else {
-                if (num3 % 2 == 0) {
-                    System.out.println(num3 + " является положительным и четным");
-                } else {
-                    System.out.println(num3 + " является положительным и нечетным");
-                }
+                output += " является отрицательным";
             }
+            if (num % 2 == 0) {
+                output += " и четным";
+            } else {
+                output += " и нечетным";
+            }
+            System.out.println(num + output);
+        } else {
+            System.out.println("Число равно нулю, пока!");
         }
 
         // четвертая задача
         System.out.println("\n4. Поиск одинаковых цифр в числах");
-        int num4 = 345;
-        int num5 = 543;
-        if (num4 / 100 == num5 / 100 | num4 % 100 / 10 == num5 % 100 / 10 |
-                num4 % 10 == num5 % 10) {
+        int num4 = 321;
+        int num5 = 123;
+        int thirdDigitNum4 = num4 / 100;
+        int thirdDigitNum5 = num5 / 100;
+        int secondDigitNum4 = num4 % 100/ 10;
+        int secondDigitNum5 = num5 % 100/ 10;
+        int firstDigitNum4 = num4 % 10;
+        int firstDigitNum5 = num5 % 10;
+        if (thirdDigitNum4 == thirdDigitNum5 || secondDigitNum4 == secondDigitNum5 ||
+                firstDigitNum4 == firstDigitNum5) {
             System.out.println("Исходные числа: " + num4 + " и " + num5);
-            if (num4 / 100 == num5 / 100) {
-                int i = num4 / 100;
-                System.out.println("Одинаковая цифра " + i + " в 3-м разряде.");
+            if (thirdDigitNum4 == thirdDigitNum5) {
+                System.out.println("Одинаковая цифра " + thirdDigitNum4 + " в 3-м разряде.");
             }
-            if (num4 % 100 / 10 == num5 % 100 / 10) {
-                int i = num4 % 100 / 10;
-                System.out.println("Одинаковая цифра " + i + " во 2-м разряде.");
+            if (secondDigitNum4 == secondDigitNum5) {
+                System.out.println("Одинаковая цифра " + secondDigitNum4 + " во 2-м разряде.");
             }
-            if (num4 % 10 == num5 % 10) {
-                int i = num4 % 10;
-                System.out.println("Одинаковая цифра " + i + " в 1-м разряде.");
+            if (firstDigitNum4 == firstDigitNum5) {
+                System.out.println("Одинаковая цифра " + firstDigitNum4 + " в 1-м разряде.");
             }
         } else {
             System.out.println("В числах " + num4 + " и " + num5 +
@@ -92,66 +94,58 @@ public class IfElseStatementTheme {
         // пятая задача
         System.out.println("\n5. Определение символа по его коду");
         char symbol = '\u0057';
-        if ((int) symbol >= 48 & (int) symbol <= 57) {
+        if (symbol >= '\u0030' && symbol <= '\u0039') {
             System.out.println("Символ " + symbol + " является цифрой!");
-        } else if ((int) symbol >= 65 & (int) symbol <= 90) {
+        } else if (symbol >= '\u0041' && symbol <= '\u005A') {
             System.out.println("Символ " + symbol + " является большой буквой!");
-        } else if ((int) symbol >= 97 & (int) symbol <= 122) {
+        } else if (symbol >= '\u0061' && symbol <= '\u007A') {
             System.out.println("Символ " + symbol + " является маленькой буквой!");
         } else {
             System.out.println("Символ " + symbol + " является не буквой и не цифрой!");
         }
 
         // шестая задача
-        System.out.println("\n6. Подсчет суммы вклада и начисленнных бакном %");
+        System.out.println("\n6. Подсчет суммы вклада и начисленнных банком %");
         int depositeAmount = 301000;
-        System.out.println("Сумма вклада: " + depositeAmount);
-        if (depositeAmount > 0 & depositeAmount < 100000) {
-            float accuredAmount = depositeAmount * 0.05f;
-            System.out.println("Сумма начисленного % за год: " + accuredAmount);
-                float sumTotal = (float) depositeAmount + accuredAmount;
-            System.out.println("Итоговая сумма с % за год: " + sumTotal);
-        } else if (depositeAmount >= 100000 & depositeAmount < 300000) {
-            float accuredAmount = depositeAmount * 0.07f;
-            System.out.println("Сумма начисленного % за год: " + accuredAmount);
-                float sumTotal = (float) depositeAmount + accuredAmount;
-            System.out.println("Итоговая сумма с % за год: " + sumTotal);
+        float percentPerYear = 0;
+        if (depositeAmount > 0 && depositeAmount < 100000) {
+            percentPerYear = 0.05f;
+        } else if (depositeAmount >= 100000 && depositeAmount < 300000) {
+            percentPerYear = 0.07f;
         } else {
-            float accuredAmount = depositeAmount * 0.1f;
-            System.out.println("Сумма начисленного % за год: " + accuredAmount);
-                float sumTotal = (float) depositeAmount + accuredAmount;
-            System.out.println("Итоговая сумма с % за год: " + sumTotal);
+            percentPerYear = 0.1f;
         }
+        System.out.println("Сумма вклада: " + depositeAmount);
+        float accuredAmount = depositeAmount * percentPerYear;
+        System.out.println("Сумма начисленного % за год: " + accuredAmount);
+        float sumTotal = depositeAmount + accuredAmount;
+        System.out.println("Итоговая сумма с % за год: " + sumTotal);
 
         // седьмая задача
         System.out.println("\n7. Определение оценки по предметам");
         int historyPercent = 59;
-        int programmingPercent = 92;
-        int historyGrade = 0;
-        if (historyPercent > 0 & historyPercent <= 60) {
+        int historyGrade = 5;
+        if (historyPercent > 0 && historyPercent <= 60) {
             historyGrade = 2;
         } else if (historyPercent <= 73) {
             historyGrade = 3;
         } else if (historyPercent <= 91) {
             historyGrade = 4;
-        } else if (historyPercent <= 100) {
-            historyGrade = 5;
         }
-        int programmingGrade = 0;
-        if (programmingPercent > 0 & programmingPercent <= 60) {
+        int programmingPercent = 92;
+        int programmingGrade = 5;
+        if (programmingPercent > 0 && programmingPercent <= 60) {
             programmingGrade = 2;
         } else if (programmingPercent <= 73) {
             programmingGrade = 3;
         } else if (programmingPercent <= 91) {
             programmingGrade = 4;
-        } else if (programmingPercent <= 100) {
-            programmingGrade = 5;
         }
         System.out.println("Оценка по истории: " + historyGrade + ". Оценка по программированию: "
                 + programmingGrade);
-        float avgGrade = ((float) historyGrade + programmingGrade) / 2;
+        float avgGrade = (historyGrade + programmingGrade) / 2f;
         System.out.println("Средний балл оценок по предметам: " + avgGrade);
-        float avgPercent = ((float) historyPercent + programmingPercent) / 2;
+        float avgPercent = (historyPercent + programmingPercent) / 2f;
         System.out.println("Средний процент по предметам: " + avgPercent);
 
         // восьмая задача
@@ -162,7 +156,7 @@ public class IfElseStatementTheme {
         int annualProfit = 12 * (monthlyProfit - rentCost - productionCost);
         if (annualProfit > 0) {
             System.out.println("Прибыль за год: +" + annualProfit + " руб.");
-        } else if (annualProfit < 0) {
+        } else {
             System.out.println("Прибыль за год: " + annualProfit + " руб.");
         }
     }
