@@ -68,52 +68,49 @@ public class IfElseStatementTheme {
         System.out.println("\n4. Поиск одинаковых цифр в числах");
         int num4 = 321;
         int num5 = 123;
-        int thirdDigitNum4 = num4 / 100;
-        int thirdDigitNum5 = num5 / 100;
-        int secondDigitNum4 = num4 % 100/ 10;
-        int secondDigitNum5 = num5 % 100/ 10;
-        int firstDigitNum4 = num4 % 10;
-        int firstDigitNum5 = num5 % 10;
-        if (thirdDigitNum4 == thirdDigitNum5 || secondDigitNum4 == secondDigitNum5 ||
-                firstDigitNum4 == firstDigitNum5) {
+        int hundredsNum4 = num4 / 100;
+        int hundredsNum5 = num5 / 100;
+        int tensNum4 = num4 % 100 / 10;
+        int tensNum5 = num5 % 100 / 10;
+        int unitsNum4 = num4 % 10;
+        int unitsNum5 = num5 % 10;
+        if (hundredsNum4 == hundredsNum5 || tensNum4 == tensNum5 || unitsNum4 == unitsNum5) {
             System.out.println("Исходные числа: " + num4 + " и " + num5);
-            if (thirdDigitNum4 == thirdDigitNum5) {
-                System.out.println("Одинаковая цифра " + thirdDigitNum4 + " в 3-м разряде.");
+            if (hundredsNum4 == hundredsNum5) {
+                System.out.println("Одинаковая цифра " + hundredsNum4 + " в 3-м разряде.");
             }
-            if (secondDigitNum4 == secondDigitNum5) {
-                System.out.println("Одинаковая цифра " + secondDigitNum4 + " во 2-м разряде.");
+            if (tensNum4 == tensNum5) {
+                System.out.println("Одинаковая цифра " + tensNum4 + " во 2-м разряде.");
             }
-            if (firstDigitNum4 == firstDigitNum5) {
-                System.out.println("Одинаковая цифра " + firstDigitNum4 + " в 1-м разряде.");
+            if (unitsNum4 == unitsNum5) {
+                System.out.println("Одинаковая цифра " + unitsNum4 + " в 1-м разряде.");
             }
         } else {
-            System.out.println("В числах " + num4 + " и " + num5 +
-                    " нет одинаковых цифр в разрядах!");
+            System.out.println("В числах " + num4 + " и " +
+                    num5 + " нет одинаковых цифр в разрядах!");
         }
 
         // пятая задача
         System.out.println("\n5. Определение символа по его коду");
         char symbol = '\u0057';
-        if (symbol >= '\u0030' && symbol <= '\u0039') {
+        if (symbol >= '0' && symbol <= '9') {
             System.out.println("Символ " + symbol + " является цифрой!");
-        } else if (symbol >= '\u0041' && symbol <= '\u005A') {
+        } else if (symbol >= 'A' && symbol <= 'Z') {
             System.out.println("Символ " + symbol + " является большой буквой!");
-        } else if (symbol >= '\u0061' && symbol <= '\u007A') {
+        } else if (symbol >= 'a' && symbol <= 'z') {
             System.out.println("Символ " + symbol + " является маленькой буквой!");
         } else {
             System.out.println("Символ " + symbol + " является не буквой и не цифрой!");
         }
 
         // шестая задача
-        System.out.println("\n6. Подсчет суммы вклада и начисленнных банком %");
+        System.out.println("\n6. Подсчет суммы вклада и начисленных банком %");
         int depositeAmount = 301000;
-        float percentPerYear = 0;
+        float percentPerYear = 0.1f;
         if (depositeAmount > 0 && depositeAmount < 100000) {
             percentPerYear = 0.05f;
         } else if (depositeAmount >= 100000 && depositeAmount < 300000) {
             percentPerYear = 0.07f;
-        } else {
-            percentPerYear = 0.1f;
         }
         System.out.println("Сумма вклада: " + depositeAmount);
         float accuredAmount = depositeAmount * percentPerYear;
@@ -141,8 +138,8 @@ public class IfElseStatementTheme {
         } else if (programmingPercent <= 91) {
             programmingGrade = 4;
         }
-        System.out.println("Оценка по истории: " + historyGrade + ". Оценка по программированию: "
-                + programmingGrade);
+        System.out.println("Оценка по истории: " + historyGrade +
+                ". Оценка по программированию: " + programmingGrade);
         float avgGrade = (historyGrade + programmingGrade) / 2f;
         System.out.println("Средний балл оценок по предметам: " + avgGrade);
         float avgPercent = (historyPercent + programmingPercent) / 2f;
