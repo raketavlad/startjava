@@ -6,6 +6,7 @@ public class CyclesTheme {
         int endSegment = 21;
         int sumEvenNums = 0;
         int sumOddNums = 0;
+        System.out.print("В отрезке [" + startSegment + ", ");
         do {
             if (startSegment % 2 == 0) {
                 sumEvenNums += startSegment;
@@ -14,21 +15,17 @@ public class CyclesTheme {
             }
             startSegment++;
         } while (startSegment <= endSegment);
-        System.out.println("В отрезке [-10, 21] сумма четных чисел = " + sumEvenNums +
+        System.out.println(endSegment + "] сумма четных чисел = " + sumEvenNums +
                 ", а нечетных = " + sumOddNums);
 
         // вторая задача
         System.out.println("\n2. Вывод чисел в порядке убывания");
-        int a = 10;
-        int b = 5;
-        int max = 0;
-        int min = 0;
-        if (a > b) {
-            max = a;
-            min = b;
-        } else {
-            max = b;
-            min = a;
+        int max = 10;
+        int min = 5;
+        if (max < min) {
+            max += min;
+            min = max - min;
+            max -= min;
         }
         int c = -1;
         if (c > max) {
@@ -45,7 +42,7 @@ public class CyclesTheme {
         int num3 = 1234;
         int sumDigits = 0;
         System.out.print("Для числа " + num3 + " реверсивное число: ");
-        while (num3 >= 1) {
+        while (num3 > 0) {
             int digit = num3 % 10;
             System.out.print(digit);
             sumDigits += digit;
@@ -53,22 +50,22 @@ public class CyclesTheme {
         }
         System.out.println("\nСумма цифр этого числа = " + sumDigits);
 
-        // четветрая задача
+        // четвертая задача
         System.out.println("\n4. Вывод чисел в несколько строк");
         int startInterval = 1;
         int endInterval = 24;
-        int counter4 = 0;
+        int counter = 0;
         for (int i = startInterval; i < endInterval; i++) {
-            if (counter4 == 5 && i < endInterval - 1) {
+            if (counter == 5 && i < endInterval - 1) {
                 System.out.println("");
-                counter4 = 0;
+                counter = 0;
             }
             if (i % 2 != 0) {
                 System.out.printf("%2d ", i);
-                counter4++;
+                counter++;
             }
         }
-        for (int i = counter4; i < 5; i++) {
+        for (int i = counter; i < 5; i++) {
             System.out.printf("%2d ", 0);
         }
 
@@ -78,8 +75,7 @@ public class CyclesTheme {
         int quantityTwos = 0;
         System.out.print("В " + num5);
         while (num5 > 0) {
-            int reducerNum5 = num5 % 10;
-            if (reducerNum5 == 2) {
+            if (num5 % 10 == 2) {
                 quantityTwos++;
             }
             num5 /= 10;
@@ -92,80 +88,78 @@ public class CyclesTheme {
 
         // шестая задача
         System.out.println("\n6. Отображение геометрических фигур");
-        int sideRectangle1 = 10;
-        int sideRectangel2 = 5;
-        for (int i = sideRectangel2; i != 0; i--) {
-            for (int j = sideRectangle1; j != 0; j--) {
+        for (int i = 5; i != 0; i--) {
+            for (int j = 10; j != 0; j--) {
                 System.out.print("*");
             }
-            System.out.println("");
+            System.out.println();
         }
-        System.out.println("");
+        System.out.println();
 
         // вторая фигура
-        int sideTriangle1 = 5;
-        int sideTriangle2 = 5;
-        while (sideTriangle1 != 0) {
-            while (sideTriangle2 != 0) {
+        int side1 = 5;
+        int side2 = 5;
+        while (side1 != 0) {
+            while (side2 != 0) {
                 System.out.print("#");
-                sideTriangle2--;
+                side2--;
             }
-            sideTriangle1--;
-            sideTriangle2 = sideTriangle1;
-            System.out.println("");
+            side1--;
+            side2 = side1;
+            System.out.println();
         }
-        System.out.println("");
+        System.out.println();
 
         // третья фигура
-        int lengthTriangle = 5;
-        int heightTrinagle = 3;
-        String dollar = "";
+        int maxHeight = 3;
+        int counter2 = 2;
+        side1 = 5;
         do {
-            dollar += "$";
-            System.out.println(dollar);
-            heightTrinagle--;
-            lengthTriangle--;
-        } while (heightTrinagle > 0);
-        do {
-            System.out.print("$");
-            if (lengthTriangle == 1) {
-                System.out.printf("%n%s%n", "$");
+            do {
+                System.out.print("$");
+                maxHeight--;
+            } while (maxHeight > counter2);
+            System.out.println();
+            maxHeight = 3;
+            if (side1 > 3) {
+                counter2--;
+            } else {
+                counter2++;
             }
-            lengthTriangle--;
-        } while (lengthTriangle > 0);
+            side1--;
+        } while(side1 > 0);
 
         // седьмая задача
         System.out.println("\n7. Отображение ASCII-символов");
-        int ascii15 = 15;
-        for (int i = ascii15; (char) i < '0'; i++) {
-            if (i == 15) {
-                System.out.printf("%-10s%-12s%s%n", "DECIMAL", "CHARACTER", "DESCRIPTION");
-            }
+        System.out.printf("%-10s%-12s%s%n", "DECIMAL", "CHARACTER", "DESCRIPTION");
+        for (int i = 15; i < '0'; i++) {
             if (i % 2 != 0) {
-                System.out.printf("%4d%11s            %-1s%n", i, (char) i, Character.getName(i));
-
+                System.out.printf("%4d%11c            %-1s%n", i, i, Character.getName(i));
             }
         }
-        int ascii97 = 97;
-        int ascii122 = 122;
-        for (int i = ascii97; i <= ascii122; i++) {
+        for (int i = 97; i <= 122; i++) {
             if (i % 2 == 0) {
-                System.out.printf("%4d%11s            %-1s%n", i, (char) i, Character.getName(i));
+                System.out.printf("%4d%11c            %-1s%n", i, i, Character.getName(i));
             }
         }
 
         // восьмая задача
         System.out.println("\n8. Проверка, является ли число палиндромом");
         int num8 = 1234321;
-        String palindrome1 = "";
+        int reverseNum = 0;
         int copyNum8 = num8;
-        for (int i = 0; i < 7; i++) {
-            int lastDigitCopyNum8 = copyNum8 % 10;
-            palindrome1 += lastDigitCopyNum8;
+        for (int i = 7; i > 0; i--) {
+            int digit = copyNum8 % 10;
+            int placeDigit = 1;
+            int degree = i - 1;
+            while (degree > 0) {
+                placeDigit *= 10;
+                degree--;
+            }
+            reverseNum += digit * placeDigit;
             copyNum8 /= 10;
         }
-        int palindrome2 = Integer.parseInt(palindrome1);
-        if (num8 == palindrome2) {
+        if (num8 == reverseNum) {
             System.out.println("Число " + num8 + " является палиндромом!");
         } else {
             System.out.println("Число " + num8 + " не является палиндромом!");
@@ -208,7 +202,7 @@ public class CyclesTheme {
             if (i == 1) {
                 System.out.println("\n ---------------------------");
             } else {
-                System.out.println("");
+                System.out.println();
             }
         }
     }
