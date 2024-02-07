@@ -1,4 +1,4 @@
-public class Calculator {
+public class MyFirstGame {
     public static void main(String[] args) {
         // компьютер загадывает число
         int minValue = 1;
@@ -7,18 +7,16 @@ public class Calculator {
 
         // число игрока
         int playerNum = 51;
-        boolean isCorrectNum = false;
         // алгоритм
-        while (!isCorrectNum)
+        while (randomValue != playerNum) {
             if (randomValue < playerNum) {
                 System.out.println("Число " + playerNum + " больше того, что загадал компьютер");
                 playerNum -= 3;
-            } else if (randomValue > playerNum) {
+            } else {
                 System.out.println("Число " + playerNum + " меньше того, что загадал компьютер");
                 playerNum += 2;
-            } else {
-                System.out.println("Вы победили!");
-                isCorrectNum = true;
             }
+        }
+        System.out.println("Вы победили!");
     }
 }

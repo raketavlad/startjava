@@ -16,6 +16,7 @@ public class RpsGameFormatting {
         } else if (position1 > 33) {
             sign1 = scissors;
         }
+
         String name1 = "HEL";
         System.out.println("Ход " + name1 + ":");
         for (int i = 0; i < 5; i++) {
@@ -36,6 +37,7 @@ public class RpsGameFormatting {
         } else if (position2 > 33) {
             sign2 = scissors;
         }
+        
         String name2 = "WALLE";
         System.out.println("Ход " + name2 + ":");
         for (int i = 0; i < 5; i++) {
