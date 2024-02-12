@@ -2,7 +2,7 @@ public class Person {
 
     String gender = "male";
     String name = "Vladislav";
-    float growth = 1.77f;
+    float height = 1.77f;
     float weight = 75.5f;
     int age = 29;
 
