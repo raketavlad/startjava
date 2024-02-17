@@ -8,28 +8,11 @@ public class GuessNumberTest {
         System.out.print("Введите имя второго игрока: ");
         Player player2 = new Player(sc.nextLine());
         String game = "yes";
-        while (game.equals("yes")) {
-            int randomNum = GuesNumber.generateRandomNum();
-            while (player1.getNumber() != randomNum && player2.getNumber() != randomNum) {
-                System.out.print(player1.getName() + " введите число: ");
-                player1.setNumber(sc.nextInt());
-                sc.nextLine();
-                GuesNumber.compareNums(player1, randomNum);
-                if (player1.getNumber() == randomNum) {
-                    break;
-                }
-                System.out.print(player2.getName() + " введите число: ");
-                player2.setNumber(sc.nextInt());
-                sc.nextLine();
-                GuesNumber.compareNums(player2, randomNum);
-                if (player2.getNumber() == randomNum) {
-                    break;
-                }
-            }
-            do {
-                System.out.print("Хотите продолжить игру? ");
-                game = sc.nextLine();
-            } while (!game.equals("yes") && !game.equals("no"));
-        }
+
+        do {
+            GuesNumber.compareNums(player1, player2, game);
+            System.out.print("Хотите продолжить игру? ");
+            game = sc.nextLine();
+        } while (game.equals("yes") || !game.equals("no"));
     }
 }

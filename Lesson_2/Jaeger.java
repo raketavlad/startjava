@@ -8,12 +8,10 @@ public class Jaeger {
     private int strength;
     private int armor;
 
-    public Jaeger() {
+    public Jaeger() {}
 
-    }
-
-    public Jaeger(String modelName, String mark, String origin, float height, float weight,
-            int strength, int armor) {
+    public Jaeger(String modelName, String mark, String origin, float height,
+            float weight, int strength, int armor) {
         this.modelName = modelName;
         this.mark = mark;
         this.origin = origin;
@@ -79,14 +77,6 @@ public class Jaeger {
         this.armor = armor;
     }
 
-    public static void showJaegerInfo(Jaeger jaeger) {
-        System.out.println("Модель робота: " + jaeger.getModelName() +
-                "\nМарка : " + jaeger.getMark() + "\nПроизведен: " + jaeger.getOrigin() +
-                "\nВысота: " + jaeger.getHeight() + " meters" +
-                "\nВес: " + jaeger.getWeight() + " tons" +
-                "\nСила: " + jaeger.getStrenght() + "\nБроня: " + jaeger.getArmor() + "\n");
-    }
-
     public static void move(Jaeger jaeger) {
         System.out.println(jaeger.getModelName() + " двигается вперёд!");
     }
@@ -105,5 +95,13 @@ public class Jaeger {
 
     public static void jump(Jaeger jaeger) {
         System.out.println(jaeger.getModelName() + " подпрыгивает!");
+    }
+
+    public static void showJaegerInfo(Jaeger jaeger) {
+        System.out.println("Модель робота: " + jaeger.getModelName() +
+                "\nМарка : " + jaeger.getMark() + "\nПроизведен: " + jaeger.getOrigin() +
+                "\nВысота: " + jaeger.getHeight() + " meters" +
+                "\nВес: " + jaeger.getWeight() + " tons" +
+                "\nСила: " + jaeger.getStrenght() + "\nБроня: " + jaeger.getArmor() + "\n");
     }
 }

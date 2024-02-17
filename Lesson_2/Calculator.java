@@ -1,67 +1,49 @@
 public class Calculator {
 
-    private int firstNum;
-    private int secondNum;
+    private int num1;
+    private int num2;
     private char sign;
 
-    public int getFirstNum() {
-        return firstNum;
-    }
-
-    public void setFirstNum(int firstNum) {
-        if (firstNum > 0) {
-            this.firstNum = firstNum;
+    public void setNum1(int num1) {
+        if (num1 > 0) {
+            this.num1 = num1;
         } else {
             System.out.println("Калькулятор принимает только целые положительные числа!");
         }
     }
 
-    public int getSecondNum() {
-        return secondNum;
-    }
-
-    public void setSecondNum(int secondNum) {
-        if (secondNum > 0) {
-            this.secondNum = secondNum;
+    public void setNum2(int num2) {
+        if (num2 > 0) {
+            this.num2 = num2;
         } else {
             System.out.println("Калькулятор принимает только целые положительные числа!");
         }
-    }
-
-    public char getSign() {
-        return sign;
     }
 
     public void setSign(char sign) {
         this.sign = sign;
     }
 
-    public String calculate() {
-        int result = 1;
+    public double calculate() {
         switch (sign) {
             case '+':
-                result = firstNum + secondNum;
-                break;
+                return num1 + num2;
             case '-':
-                result = firstNum - secondNum;
-                break;
+                return num1 - num2;
             case '*':
-                result = firstNum * secondNum;
-                break;
+                return num1 * num2;
             case '/':
-                result = firstNum / secondNum;
-                break;
+                return num1 / num2;
             case '^':
-                for (int i = 0; i < secondNum; i++) {
-                    result *= firstNum;
+                int resultMultiplication = 1;
+                for (int i = 0; i < num2; i++) {
+                    resultMultiplication *= num1;
                 }
-                break;
+                return resultMultiplication;
             case '%':
-                result = firstNum % secondNum;
-                break;
+                return num1 % num2;
             default:
-                return "Введенная математическая операция не поддерживается!";
+                return Double.NaN;
         }
-        return "Результат вычисления равен: " + result;
     }
 }

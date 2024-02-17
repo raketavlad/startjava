@@ -13,12 +13,13 @@ public class JaegerTest {
                 "\nВысота: " + jaeger1.getHeight() + " meters" +
                 "\nВес: " + jaeger1.getWeight() + " tons" +
                 "\nСила: " + jaeger1.getStrenght() + "\nБроня: " + jaeger1.getArmor() + "\n");
+        
         Jaeger jaeger2 = new Jaeger("Crimson Typhon", "Mark-4", "China", 76.2f, 1.722f, 40, 40);
-        Jaeger.showJaegerInfo(jaeger2);
-        Jaeger.move(jaeger2);
-        Jaeger.attackKaiju(jaeger2);
-        Jaeger.hitKaiju(jaeger2);
-        Jaeger.shootKaiju(jaeger2);
-        Jaeger.jump(jaeger2);
+        jaeger2.showJaegerInfo(jaeger2);
+        jaeger2.move(jaeger2);
+        jaeger2.attackKaiju(jaeger2);
+        jaeger2.hitKaiju(jaeger2);
+        jaeger2.shootKaiju(jaeger2);
+        jaeger2.jump(jaeger2);
     }
 }
