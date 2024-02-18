@@ -8,11 +8,11 @@ public class GuessNumberTest {
         System.out.print("Введите имя второго игрока: ");
         Player player2 = new Player(sc.nextLine());
         String game = "yes";
-
-        do {
-            GuesNumber.compareNums(player1, player2, game);
+        GuesNumber gameSession = new GuesNumber(player1, player2);
+        while (game.equals("yes") || !game.equals("no")) {
+            gameSession.compareNums(game);
             System.out.print("Хотите продолжить игру? ");
             game = sc.nextLine();
-        } while (game.equals("yes") || !game.equals("no"));
+        }
     }
 }

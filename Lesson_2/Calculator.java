@@ -35,11 +35,11 @@ public class Calculator {
             case '/':
                 return num1 / num2;
             case '^':
-                int resultMultiplication = 1;
+                int result = 1;
                 for (int i = 0; i < num2; i++) {
-                    resultMultiplication *= num1;
+                    result *= num1;
                 }
-                return resultMultiplication;
+                return result;
             case '%':
                 return num1 % num2;
             default:

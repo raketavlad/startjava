@@ -1,5 +1,13 @@
 public class GuesNumber {
 
+    private Player player1;
+    private Player player2;
+
+    public GuesNumber(Player player1, Player player2) {
+        this.player1 = player1;
+        this.player2 = player2;
+    }
+
     public static int generateRandomNum() {
         int minValue = 1;
         int maxValue = 100;
@@ -7,7 +15,7 @@ public class GuesNumber {
         return randomValue;
     }
 
-    public static void compareNums(Player player1, Player player2, String game) {
+    public void compareNums(String game) {
         int randomNum = generateRandomNum();
         Scanner sc = new Scanner(System.in);
         while (game.equals("yes")) {
