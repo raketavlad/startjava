@@ -11,16 +11,13 @@ public class GuessNumber {
     }
 
     public static int generateRandomNum() {
-        int minValue = 1;
-        int maxValue = 100;
-        int randomValue = minValue + (int) (Math.random() * (maxValue - minValue + 1));
-        return randomValue;
+        return 1 + (int) (Math.random() * 100);
     }
 
-    public void compareNums(String game) {
+    public void play(String game) {
         int randomNum = generateRandomNum();
         Scanner sc = new Scanner(System.in);
-        while (game.equals("yes")) {
+        while (true) {
             System.out.print(player1.getName() + " введите число: ");
             player1.setNumber(sc.nextInt());
             sc.nextLine();
@@ -41,7 +38,7 @@ public class GuessNumber {
             sc.nextLine();
             if (player2.getNumber() > randomNum) {
                 System.out.println("Число " + player2.getNumber() +
-                        " больше того, что загадал компьютер!");
+                    " больше того, что загадал компьютер!");
             } else if (player2.getNumber() < randomNum) {
                 System.out.println("Число " + player2.getNumber() +
                         " меньше того, что загадал компьютер!");

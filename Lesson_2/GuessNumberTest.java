@@ -9,10 +9,12 @@ public class GuessNumberTest {
         Player player2 = new Player(sc.nextLine());
         String game = "yes";
         GuessNumber gameSession = new GuessNumber(player1, player2);
-        while (game.equals("yes") || !game.equals("no")) {
-            gameSession.compareNums(game);
-            System.out.print("Хотите продолжить игру? ");
-            game = sc.nextLine();
+        while (game.equals("yes")) {
+            gameSession.play(game);
+            do {
+                System.out.print("Хотите продолжить игру? ");
+                game = sc.nextLine();
+            } while (!game.equals("yes") && !game.equals("no"));
         }
     }
 }
