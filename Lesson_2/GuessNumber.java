@@ -38,7 +38,7 @@ public class GuessNumber {
             sc.nextLine();
             if (player2.getNumber() > randomNum) {
                 System.out.println("Число " + player2.getNumber() +
-                    " больше того, что загадал компьютер!");
+                        " больше того, что загадал компьютер!");
             } else if (player2.getNumber() < randomNum) {
                 System.out.println("Число " + player2.getNumber() +
                         " меньше того, что загадал компьютер!");
