@@ -10,43 +10,38 @@ public class GuessNumber {
         this.player2 = player2;
     }
 
-    public static int generateRandomNum() {
+    public static int generateRandomNumber() {
         return 1 + (int) (Math.random() * 100);
     }
 
-    public void play(String game) {
-        int randomNum = generateRandomNum();
-        Scanner sc = new Scanner(System.in);
+    public void play() {
+        int randomNumber = generateRandomNumber();
         while (true) {
-            System.out.print(player1.getName() + " введите число: ");
-            player1.setNumber(sc.nextInt());
-            sc.nextLine();
-            if (player1.getNumber() > randomNum) {
-                System.out.println("Число " + player1.getNumber() +
-                        " больше того, что загадал компьютер!");
-            } else if (player1.getNumber() < randomNum) {
-                System.out.println("Число " + player1.getNumber() +
-                        " меньше того, что загадал компьютер!");
-            } else {
-                System.out.println("Игрок " + player1.getName() + " победил!");
-                System.out.println();
+            if (enterAndCheckNumber(player1, randomNumber)) {
                 break;
             }
-
-            System.out.print(player2.getName() + " введите число: ");
-            player2.setNumber(sc.nextInt());
-            sc.nextLine();
-            if (player2.getNumber() > randomNum) {
-                System.out.println("Число " + player2.getNumber() +
-                        " больше того, что загадал компьютер!");
-            } else if (player2.getNumber() < randomNum) {
-                System.out.println("Число " + player2.getNumber() +
-                        " меньше того, что загадал компьютер!");
-            } else {
-                System.out.println("Игрок " + player2.getName() + " победил!");
-                System.out.println();
+            if (enterAndCheckNumber(player2, randomNumber)) {
                 break;
             }
         }
+    }
+
+    public boolean enterAndCheckNumber(Player player, int randomNumber) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print(player.getName() + " введите число: ");
+        player.setNumber(sc.nextInt());
+        sc.nextLine();
+        if (player.getNumber() > randomNumber) {
+            System.out.println("Число " + player.getNumber() +
+                    " больше того, что загадал компьютер!");
+        } else if (player.getNumber() < randomNumber) {
+            System.out.println("Число " + player.getNumber() +
+                    " меньше того, что загадал компьютер!");
+        } else {
+            System.out.println("Игрок " + player.getName() + " победил!");
+            System.out.println();
+            return true;
+        }
+        return false;
     }
 }
