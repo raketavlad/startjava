@@ -1,4 +1,4 @@
-package com.startjava.lesson_2_3.animal;
+package com.startjava.lesson_2_3_4.animal;
 
 public class WolfTest {
 
@@ -7,7 +7,7 @@ public class WolfTest {
         akella.setGender("male");
         akella.setNickname("Akella");
         akella.setWeight(34.1f);
-        akella.setAge(9);
+        akella.setAge(7);
         akella.setWoolColor("gray");
         System.out.println("Пол волка: " + akella.getGender() +
                 "\nКличка волка: " + akella.getNickname() +
