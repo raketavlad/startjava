@@ -1,9 +1,10 @@
 package com.startjava.lesson_2_3_4.array;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class ArrayTheme {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         //Первая задача
         runExcercise1();
 
@@ -20,8 +21,7 @@ public class ArrayTheme {
         runExcercise5();
 
         //Шестая задача
-        System.out.println("\n\n6. Вывод текста с эффектом пишущей машинки");
-        System.out.println("Пока не сделал, но в процессе! Не хочу терять время, отправляю на проверку!");
+        runExcercise6();
     }
 
     // Методы
@@ -164,6 +164,73 @@ public class ArrayTheme {
             if (i == 9 || i == 19) {
                 System.out.println();
             }
+        }
+    }
+
+    private static void runExcercise6() throws InterruptedException {
+        System.out.println("\n\n6. Вывод текста с эффектом пишущей машинки");
+//        String text = "Чтобы написать чистый код, мы сначала пишем грязный код, " +
+//                "затем рефакторим его.\n- Robert Martin";
+
+        String text = "Java - это C++, из которого убрали все пистолеты, ножи и дубинки." +
+                "\n- James Gosling";
+
+        // Создание массива для поиска самого короткого и самого длинного слова
+        String formtatText = text.replace(",", "");
+        formtatText = formtatText.replace(".", "");
+        formtatText = formtatText.replace("-", "");
+        formtatText = formtatText.replace("\n", "");
+        formtatText = formtatText.replace("  ", " ");
+        String[] auxiliaryArray = formtatText.split(" ");
+
+        // Поиск самого короткого и самого длинного слова
+        String minWord = auxiliaryArray[0];
+        String maxWord = auxiliaryArray[0];
+        for (String word : auxiliaryArray) {
+            if (minWord.length() > word.length()) {
+                minWord = word;
+            }
+            if (maxWord.length() < word.length()) {
+                maxWord = word;
+            }
+        }
+
+        // Создание массива и изменение регистра в необходимом промежутке
+        String[] arrayStrings = text.split(" ");
+        boolean isBig = false;
+        for (int i = 0; i < arrayStrings.length; i++) {
+            if (!isBig && (arrayStrings[i].replace(",", "").equals(maxWord) ||
+                    arrayStrings[i].equals(minWord))) {
+                isBig = true;
+                arrayStrings[i] = arrayStrings[i].toUpperCase();
+                continue;
+            }
+            if (isBig) {
+                arrayStrings[i] = arrayStrings[i].toUpperCase();
+            }
+            if (isBig && (arrayStrings[i].equals(maxWord.toUpperCase()) ||
+                    arrayStrings[i].equals(minWord.toUpperCase()))) {
+                isBig = false;
+            }
+        }
+
+        // Создание строки из массива
+        String auxiliaryText = new String();
+        for (String word : arrayStrings) {
+            word += " ";
+            auxiliaryText += word;
+        }
+
+        // Создание массива для каждого символа
+        String[] arrayCharacter = new String[auxiliaryText.length()];
+        for (int i = 0; i < auxiliaryText.length(); i++) {
+            arrayCharacter[i] = String.valueOf(auxiliaryText.charAt(i));
+        }
+
+        // Вывод текста по символам
+        for (String symbol : arrayCharacter) {
+            System.out.print(symbol);
+            Thread.sleep(100);
         }
     }
 }
