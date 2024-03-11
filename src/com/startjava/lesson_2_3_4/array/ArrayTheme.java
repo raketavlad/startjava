@@ -6,70 +6,69 @@ public class ArrayTheme {
     public static void main(String[] args) throws InterruptedException {
         reverseArrayValues();
         calculateFactorial();
-        removingArrayElements();
-        displayAlphabet();
+        deleteArrayElements();
+        printAlphabet();
         fillArrayUniqueNumbers();
         displayTextTypewriterEffect();
     }
 
     private static void reverseArrayValues() {
         System.out.println("1. Реверс значений массива");
-        int[] numbersFrom1To7 = {1, 7, 4, 5, 2, 6, 3};
-        int length = numbersFrom1To7.length;
-        printElements1(numbersFrom1To7, "До");
-        for (int i = 0; i < length / 2; i ++) {
-            int a = numbersFrom1To7[i];
-            numbersFrom1To7[i] = numbersFrom1To7[length - 1 - i];
-            numbersFrom1To7[length - 1 - i] = a;
+        int[] naturalNumbers = {1, 7, 4, 5, 2, 6, 3};
+        int length = naturalNumbers.length;
+        printElements(naturalNumbers, "До");
+        for (int i = 0; i <= length / 2; i++) {
+            int swap = naturalNumbers[i];
+            naturalNumbers[i] = naturalNumbers[--length];
+            naturalNumbers[length] = swap;
         }
-        printElements1(numbersFrom1To7, "После");
+        printElements(naturalNumbers, "После");
     }
 
-    private static void printElements1(int[] array, String state) {
+    private static void printElements(int[] array, String state) {
         int length = array.length;
         System.out.print(state + " реверса: [");
         for (int i = 0; i < length; i++) {
-            System.out.print(array[i]);
-            if (i == length - 1) {
-                System.out.print(array[i] + "]\n");
-            } else {
-                System.out.print(array[i] + ", ");
-            }
+            String indexControl = (i == length - 1) ? "]\n" : ", ";
+            System.out.print(array[i] + indexControl);
         }
     }
 
     private static void calculateFactorial() {
         System.out.println("\n2. Вычисление факториала");
         int[] naturalNumbers = new int[10];
-        for (int i = 0; i < naturalNumbers.length; i ++) {
+        int length = naturalNumbers.length;
+        for (int i = 0; i < length; i++) {
             naturalNumbers[i] = i;
         }
-        String displayResult = new String();
         int result = 1;
-        for (int i = 1; i <= 8; i ++) {
-            result *= naturalNumbers[i];
-            displayResult += (naturalNumbers[i] < 8) ? naturalNumbers[i] + " * " : naturalNumbers[i] + " = " + result;
+        int factorial = 1;
+        while (factorial <= naturalNumbers[8]) {
+            result *= naturalNumbers[factorial];
+            String displayResult = "" + naturalNumbers[factorial];
+            displayResult += (factorial != naturalNumbers[8]) ? " * " : " = " + result + "\n";
+            System.out.print(displayResult);
+            factorial++;
         }
-        System.out.println(displayResult);
     }
 
-    private static void removingArrayElements() {
+    private static void deleteArrayElements() {
         System.out.println("\n3. Удаление элементов массива");
         Random random = new Random();
         float[] randomFloatNumbers = new float[15];
         int length = randomFloatNumbers.length;
-        for (int i = 0; i < length; i ++) {
+        for (int i = 0; i < length; i++) {
             randomFloatNumbers[i] = random.nextFloat(1);
         }
         int middleIndex = (length - 1) / 2;
         float middleNumber = randomFloatNumbers[middleIndex];
 
         //Вывод исходного массива
-        printElements2("Исходный", randomFloatNumbers, middleIndex);
+        printElements("Исходный", randomFloatNumbers, middleIndex);
 
         //Проверка и обнуление значений
         int counter = 0;
-        for (int i = 0; i < length; i ++) {
+        for (int i = 0; i < length; i++) {
             if (randomFloatNumbers[i] > middleNumber) {
                 randomFloatNumbers[i] = 0;
                 counter++;
@@ -77,33 +76,30 @@ public class ArrayTheme {
         }
 
         //Вывод изменённого массива и количества обнуленных ячеек
-        printElements2("Изменённый", randomFloatNumbers, middleIndex);
+        printElements("Изменённый", randomFloatNumbers, middleIndex);
         System.out.println("Количество обнулённых ячеек: " + counter);
     }
 
-    private static void printElements2(String word, float[] array, int index) {
+    private static void printElements(String word, float[] array, int index) {
         int length = array.length;
-        System.out.println(word + " массив:");
-        for (int i = 0; i < length; i ++) {
-            if (i == 0) {
-                System.out.printf("%s%.3f%s", "[", array[i], ", ");
-            } else if (i == length - 1) {
+        System.out.print(word + " массив:\n[");
+        for (int i = 0; i < length; i++) {
+            if (i == length - 1) {
                 System.out.printf("%.3f%s", array[i], "]\n");
+                break;
             } else if (i == index + 1) {
-                System.out.printf("\n %.3f%s", array[i], ", ");
-            } else {
-                System.out.printf("%.3f%s", array[i], ", ");
+                System.out.printf("\n%s", " ");
             }
+            System.out.printf("%.3f%s", array[i], ", ");
         }
     }
 
-    private static void displayAlphabet() {
+    private static void printAlphabet() {
         System.out.println("\n4. Вывод алфавита лесенкой");
         char[] alphabet = new char[26];
         int length = alphabet.length;
-        int j = 0;
-        for (int i = 65; i <= 90; i++) {
-            alphabet[j++] = (char) i;
+        for (int i = 0; i < length; i++) {
+            alphabet[i] = (char) ('A' + i);
         }
 
         int quantityLetters = length;
@@ -118,24 +114,23 @@ public class ArrayTheme {
 
     private static void fillArrayUniqueNumbers() {
         System.out.println("\n5. Заполнение массива уникальными числами");
-        int[] randomIntegerNumbers = new int[30];
-        int length = randomIntegerNumbers.length;
+        int[] uniqueNumbers = new int[30];
+        int length = uniqueNumbers.length;
         Random random = new Random();
         boolean isUniqueNumber;
         for (int i = 0; i < length; i++) {
             isUniqueNumber = false;
             while (!isUniqueNumber) {
                 int number = random.nextInt(60, 100);
-                for (int num : randomIntegerNumbers) {
-                    if (num == number) {
+                for (int value : uniqueNumbers) {
+                    if (value == number) {
                         isUniqueNumber = false;
                         break;
-                    } else {
-                        isUniqueNumber = true;
                     }
+                    isUniqueNumber = true;
                 }
                 if (isUniqueNumber) {
-                    randomIntegerNumbers[i] = number;
+                    uniqueNumbers[i] = number;
                 }
             }
         }
@@ -143,17 +138,17 @@ public class ArrayTheme {
         // Сортировка массива
         for (int i = length - 1; i >= 0; i--) {
             for (int j = 0; j < i; j++) {
-                if (randomIntegerNumbers[j] > randomIntegerNumbers[j+1]) {
-                    int max = randomIntegerNumbers[j+1];
-                    randomIntegerNumbers[j+1] = randomIntegerNumbers[j];
-                    randomIntegerNumbers[j] = max;
+                if (uniqueNumbers[j] > uniqueNumbers[j + 1]) {
+                    int maximum = uniqueNumbers[j + 1];
+                    uniqueNumbers[j + 1] = uniqueNumbers[j];
+                    uniqueNumbers[j] = maximum;
                 }
             }
         }
 
         // Вывод массива по 10 элементов в строке
         for (int i = 0; i < length; i++) {
-            System.out.print(randomIntegerNumbers[i] + " ");
+            System.out.print(uniqueNumbers[i] + " ");
             if (i == 9 || i == 19) {
                 System.out.println();
             }
@@ -208,7 +203,7 @@ public class ArrayTheme {
         }
 
         // Создание строки из массива
-        String auxiliaryText = new String();
+        String auxiliaryText = "";
         for (String word : arrayStrings) {
             word += " ";
             auxiliaryText += word;
