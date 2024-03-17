@@ -1,5 +1,7 @@
 package com.startjava.lesson_2_3_4.array;
 
+import com.sun.security.jgss.GSSUtil;
+
 import java.util.Random;
 
 public class ArrayTheme {
@@ -36,47 +38,46 @@ public class ArrayTheme {
 
     private static void calculateFactorial() {
         System.out.println("\n2. Вычисление факториала");
-        int[] naturalNumbers = new int[10];
-        int length = naturalNumbers.length;
+        int[] multipliersFactorial = new int[10];
+        int length = multipliersFactorial.length;
         for (int i = 0; i < length; i++) {
-            naturalNumbers[i] = i;
+            multipliersFactorial[i] = i;
         }
         int result = 1;
-        int factorial = 1;
-        while (factorial <= naturalNumbers[8]) {
-            result *= naturalNumbers[factorial];
-            String displayResult = "" + naturalNumbers[factorial];
-            displayResult += (factorial != naturalNumbers[8]) ? " * " : " = " + result + "\n";
+        int multiplierFactorial = length - 2;
+        for (int i = 1; i <= multiplierFactorial; i ++) {
+            result *= multipliersFactorial[i];
+            String displayResult = "" + multipliersFactorial[i];
+            displayResult += (multipliersFactorial[i] < multiplierFactorial) ? " * " : " = " + result + "\n";
             System.out.print(displayResult);
-            factorial++;
         }
     }
 
     private static void deleteArrayElements() {
         System.out.println("\n3. Удаление элементов массива");
         Random random = new Random();
-        float[] randomFloatNumbers = new float[15];
-        int length = randomFloatNumbers.length;
+        float[] randomNumbers = new float[15];
+        int length = randomNumbers.length;
         for (int i = 0; i < length; i++) {
-            randomFloatNumbers[i] = random.nextFloat(1);
+            randomNumbers[i] = random.nextFloat(1);
         }
         int middleIndex = (length - 1) / 2;
-        float middleNumber = randomFloatNumbers[middleIndex];
+        float middleNumber = randomNumbers[middleIndex];
 
         //Вывод исходного массива
-        printElements("Исходный", randomFloatNumbers, middleIndex);
+        printElements("Исходный", randomNumbers, middleIndex);
 
         //Проверка и обнуление значений
         int counter = 0;
         for (int i = 0; i < length; i++) {
-            if (randomFloatNumbers[i] > middleNumber) {
-                randomFloatNumbers[i] = 0;
+            if (randomNumbers[i] > middleNumber) {
+                randomNumbers[i] = 0;
                 counter++;
             }
         }
 
         //Вывод изменённого массива и количества обнуленных ячеек
-        printElements("Изменённый", randomFloatNumbers, middleIndex);
+        printElements("Изменённый", randomNumbers, middleIndex);
         System.out.println("Количество обнулённых ячеек: " + counter);
     }
 
@@ -84,14 +85,14 @@ public class ArrayTheme {
         int length = array.length;
         System.out.print(word + " массив:\n[");
         for (int i = 0; i < length; i++) {
-            if (i == length - 1) {
-                System.out.printf("%.3f%s", array[i], "]\n");
-                break;
-            } else if (i == index + 1) {
+            System.out.printf("%.3f", array[i]);
+            if (i != index && i != length - 1) {
+                System.out.print(", ");
+            } else if (i == index) {
                 System.out.printf("\n%s", " ");
             }
-            System.out.printf("%.3f%s", array[i], ", ");
         }
+        System.out.println("]");
     }
 
     private static void printAlphabet() {
@@ -164,17 +165,14 @@ public class ArrayTheme {
                 "\n- James Gosling";
 
         // Создание массива для поиска самого короткого и самого длинного слова
-        String formattedText = text.replace(",", "");
-        formattedText = formattedText.replace(".", "");
-        formattedText = formattedText.replace("-", "");
-        formattedText = formattedText.replace("\n", "");
-        formattedText = formattedText.replace("  ", " ");
-        String[] auxiliaryArray = formattedText.split(" ");
+        String formattedText = text.replaceAll("[-.,\n]", "");
+        formattedText = formattedText.replaceAll("\\s+", " ");
+        String[] onlyWords = formattedText.split(" ");
 
         // Поиск самого короткого и самого длинного слова
-        String shortestWord = auxiliaryArray[0];
-        String longestWord = auxiliaryArray[0];
-        for (String word : auxiliaryArray) {
+        String shortestWord = onlyWords[0];
+        String longestWord = onlyWords[0];
+        for (String word : onlyWords) {
             if (shortestWord.length() > word.length()) {
                 shortestWord = word;
             }
@@ -184,39 +182,34 @@ public class ArrayTheme {
         }
 
         // Создание массива и изменение регистра в необходимом промежутке
-        String[] arrayStrings = text.split(" ");
+        String[] wordsAndSymbols = text.split(" ");
         boolean isBig = false;
-        for (int i = 0; i < arrayStrings.length; i++) {
-            if (!isBig && (arrayStrings[i].replace(",", "").equals(longestWord) ||
-                    arrayStrings[i].equals(shortestWord))) {
-                isBig = true;
-                arrayStrings[i] = arrayStrings[i].toUpperCase();
-                continue;
+        for (int i = 0; i < wordsAndSymbols.length; i++) {
+            if (wordsAndSymbols[i].replace(",", "").equals(longestWord) ||
+                    wordsAndSymbols[i].equals(shortestWord)) {
+                isBig = !isBig;
             }
-            if (isBig) {
-                arrayStrings[i] = arrayStrings[i].toUpperCase();
-            }
-            if (isBig && (arrayStrings[i].equals(longestWord.toUpperCase()) ||
-                    arrayStrings[i].equals(shortestWord.toUpperCase()))) {
-                isBig = false;
+            if (isBig || (wordsAndSymbols[i].replace(",", "").equals(longestWord) ||
+                    wordsAndSymbols[i].equals(shortestWord))) {
+                wordsAndSymbols[i] = wordsAndSymbols[i].toUpperCase();
             }
         }
 
         // Создание строки из массива
         String auxiliaryText = "";
-        for (String word : arrayStrings) {
+        for (String word : wordsAndSymbols) {
             word += " ";
             auxiliaryText += word;
         }
 
         // Создание массива для каждого символа
-        String[] arrayCharacter = new String[auxiliaryText.length()];
+        char[] textByCharacters = new char[auxiliaryText.length()];
         for (int i = 0; i < auxiliaryText.length(); i++) {
-            arrayCharacter[i] = String.valueOf(auxiliaryText.charAt(i));
+            textByCharacters[i] = auxiliaryText.charAt(i);
         }
 
         // Вывод текста по символам
-        for (String symbol : arrayCharacter) {
+        for (char symbol : textByCharacters) {
             System.out.print(symbol);
             Thread.sleep(100);
         }
