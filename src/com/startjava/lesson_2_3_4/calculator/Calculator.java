@@ -4,45 +4,40 @@ public class Calculator {
 
     private int num1;
     private int num2;
-    private char sign;
+    private String sign;
 
-    public void setNum1(int num1) {
-        if (num1 > 0) {
-            this.num1 = num1;
-        } else {
-            System.out.println("Калькулятор принимает только целые положительные числа!");
-        }
+    public int getNum1() {
+        return num1;
     }
 
-    public void setNum2(int num2) {
-        if (num2 > 0) {
-            this.num2 = num2;
-        } else {
-            System.out.println("Калькулятор принимает только целые положительные числа!");
-        }
+    public int getNum2() {
+        return num2;
     }
 
-    public void setSign(char sign) {
-        this.sign = sign;
+    public String getSign() {
+        return sign;
+    }
+
+    public void setParams(String parameters) {
+        String[] userExpression = parameters.split(" ");
+        num1 = Integer.parseInt(userExpression[0]);
+        num2 = Integer.parseInt(userExpression[2]);
+        sign = userExpression[1];
     }
 
     public double calculate() {
         switch (sign) {
-            case '+':
+            case "+":
                 return num1 + num2;
-            case '-':
+            case "-":
                 return num1 - num2;
-            case '*':
+            case "*":
                 return num1 * num2;
-            case '/':
-                return num1 / num2;
-            case '^':
-                int result = 1;
-                for (int i = 0; i < num2; i++) {
-                    result *= num1;
-                }
-                return result;
-            case '%':
+            case "/":
+                return (double) num1 / (double) num2;
+            case "^":
+                return Math.pow(num1, num2);
+            case "%":
                 return num1 % num2;
             default:
                 return Double.NaN;

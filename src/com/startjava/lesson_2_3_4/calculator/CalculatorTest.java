@@ -7,26 +7,28 @@ public class CalculatorTest {
         Scanner sc = new Scanner(System.in);
         Calculator calc = new Calculator();
         String continuation = "yes";
-        while (continuation.equals("yes")) {
-            System.out.print("Введите первое число: ");
-            calc.setNum1(sc.nextInt());
-            sc.nextLine();
-            System.out.print("Введите знак математической операции: ");
-            calc.setSign(sc.nextLine().charAt(0));
-            System.out.print("Введите второе число: ");
-            calc.setNum2(sc.nextInt());
-            double result = calc.calculate();
-            if (Double.isNaN(result)) {
-                System.out.println("Введенная математическая операция не поддерживается!");
-            } else {
-                System.out.println("Результат вычисления равен: " + result);
+        while (continuation.equals("yes") || !continuation.equals("no")) {
+            if (continuation.equals("yes")) {
+                System.out.print("Введите математическое выражение: ");
+                calc.setParams(sc.nextLine());
+                double result = calc.calculate();
+                if (Double.isNaN(result)) {
+                    System.out.println("Ошибка: знак " + calc.getSign() + " не поддерживается");
+                } else {
+                    System.out.print("Результат вычисления равен: " + calc.getNum1() + " " + calc.getSign() + " " +
+                            calc.getNum2() + " = ");
+                    if (result % 1 == 0) {
+                        System.out.printf("%.0f\n", result);
+                    } else {
+                        System.out.printf("%.3f\n", result);
+                    }
+                }
             }
-            sc.nextLine();
-            do {
-                System.out.print("Хотите продолжить вычисления? ");
-                continuation = sc.nextLine();
-            } while (!continuation.equals("yes") && !continuation.equals("no"));
-            System.out.println();
+            System.out.print("Хотите продолжить вычисления? ");
+            continuation = sc.nextLine();
+            if (continuation.equals("no")) {
+                break;
+            }
         }
     }
 }
