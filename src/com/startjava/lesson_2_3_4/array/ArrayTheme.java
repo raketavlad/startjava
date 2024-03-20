@@ -1,19 +1,17 @@
 package com.startjava.lesson_2_3_4.array;
 
-import java.sql.SQLOutput;
-import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
 public class ArrayTheme {
     public static void main(String[] args) throws InterruptedException {
-//        reverseArrayValues();
-//        calculateFactorial();
-//        deleteArrayElements();
-//        printAlphabet();
-//        fillArrayUniqueNumbers();
+        reverseArrayValues();
+        calculateFactorial();
+        deleteArrayElements();
+        printAlphabet();
+        fillArrayUniqueNumbers();
         playGallow();
-//        displayTextTypewriterEffect();
+        displayTextTypewriterEffect();
     }
 
     private static void reverseArrayValues() {
@@ -159,7 +157,7 @@ public class ArrayTheme {
     }
 
     private static void playGallow() {
-        System.out.println("6. Игра \"Виселица\"");
+        System.out.println("\n\n6. Игра \"Виселица\"");
         // Рисунок виселицы, разбиение рисунка на массив, количество ошибок = длине массива
         String gallow = """
                 _________
@@ -239,7 +237,7 @@ public class ArrayTheme {
     }
 
     private static void displayTextTypewriterEffect() throws InterruptedException {
-        System.out.println("\n\n6. Вывод текста с эффектом пишущей машинки");
+        System.out.println("\n7. Вывод текста с эффектом пишущей машинки");
 //        String text = "Чтобы написать чистый код, мы сначала пишем грязный код, " +
 //                "затем рефакторим его.\n- Robert Martin";
 
