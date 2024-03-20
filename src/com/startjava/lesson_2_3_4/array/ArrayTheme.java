@@ -1,17 +1,19 @@
 package com.startjava.lesson_2_3_4.array;
 
-import com.sun.security.jgss.GSSUtil;
-
+import java.sql.SQLOutput;
+import java.util.Arrays;
 import java.util.Random;
+import java.util.Scanner;
 
 public class ArrayTheme {
     public static void main(String[] args) throws InterruptedException {
-        reverseArrayValues();
-        calculateFactorial();
-        deleteArrayElements();
-        printAlphabet();
-        fillArrayUniqueNumbers();
-        displayTextTypewriterEffect();
+//        reverseArrayValues();
+//        calculateFactorial();
+//        deleteArrayElements();
+//        printAlphabet();
+//        fillArrayUniqueNumbers();
+        playGallow();
+//        displayTextTypewriterEffect();
     }
 
     private static void reverseArrayValues() {
@@ -156,6 +158,86 @@ public class ArrayTheme {
         }
     }
 
+    private static void playGallow() {
+        System.out.println("6. Игра \"Виселица\"");
+        // Рисунок виселицы, разбиение рисунка на массив, количество ошибок = длине массива
+        String gallow = """
+                _________
+                |   |
+                |   O
+                |  /|\\
+                |  / \\
+                | 
+                """;
+        String[] indexGallow = gallow.split("\n");
+        int countAttempt = indexGallow.length;
+
+        System.out.println("Исходное число попыток: " + countAttempt);
+
+        // Массив со словами, кладем в переменную случайоне слово из массива
+        String[] words = {"Банан", "Апельсин", "Мандарин", "Арбуз", "Яблоко"};
+        Random random = new Random();
+        String guessWord = words[random.nextInt(words.length)];
+
+        // Создаем массив из символов загаданного слова и заменяем каждую букву знаком _
+        char[] word = new char[guessWord.length()];
+        for (char symbol : word) {
+            symbol = '_';
+        }
+        System.out.println(word);
+        Scanner sc = new Scanner(System.in);
+
+        // Сама игра,
+        while (countAttempt != 0) {
+            System.out.print("\nВведите букву: ");
+            char letter = sc.nextLine().charAt(0);
+            boolean isEqaulLetter = false;
+
+            // Проверяю, есть ли введенная буква в слове вне зависимости от введённого регистра,
+            // если да, то вставляю букву на её место
+            for (int i = 0; i < guessWord.length(); i++) {
+                if (Character.toLowerCase(letter) == guessWord.charAt(i)) {
+                    word[i] = Character.toLowerCase(letter);
+                    isEqaulLetter = true;
+                } else if (Character.toUpperCase(letter) == guessWord.charAt(i)) {
+                    word[i] = Character.toUpperCase(letter);
+                    isEqaulLetter = true;
+                }
+            }
+            if (!isEqaulLetter) {
+                countAttempt--;
+                // Отрисовываю виселицу в зависимости от количества попыток
+                for (int i = 0; i < indexGallow.length - countAttempt; i++) {
+                    System.out.println(indexGallow[i]);
+                }
+                System.out.println();
+            } else {
+                if (indexGallow.length > countAttempt) {
+                    countAttempt++;
+                }
+            }
+
+            // Вывожу получившееся слово, формирую строку для проверки
+            String resultingWord = "";
+            for (char symbol : word) {
+                System.out.print(symbol);
+                resultingWord += symbol;
+            }
+
+            if (resultingWord.equals(guessWord)) {
+                System.out.println("\nВы победили, игра окончена, поздравляю!");
+                break;
+            }
+
+            System.out.println("\nОсталось попыток: " + countAttempt);
+
+            // При окончании попыток выводится сообщение о проигрыше
+            if (countAttempt == 0) {
+                System.out.println("Вы проиграли и повисли!");
+            }
+        }
+    }
+
     private static void displayTextTypewriterEffect() throws InterruptedException {
         System.out.println("\n\n6. Вывод текста с эффектом пишущей машинки");
 //        String text = "Чтобы написать чистый код, мы сначала пишем грязный код, " +
@@ -165,8 +247,8 @@ public class ArrayTheme {
                 "\n- James Gosling";
 
         // Создание массива для поиска самого короткого и самого длинного слова
-        String formattedText = text.replaceAll("[-.,\n]", "");
-        formattedText = formattedText.replaceAll("\\s+", " ");
+        String formattedText = text.replaceAll("\\p{P}", "").
+                replaceAll("\\s+", " ");
         String[] onlyWords = formattedText.split(" ");
 
         // Поиск самого короткого и самого длинного слова
@@ -175,8 +257,7 @@ public class ArrayTheme {
         for (String word : onlyWords) {
             if (shortestWord.length() > word.length()) {
                 shortestWord = word;
-            }
-            if (longestWord.length() < word.length()) {
+            } else if (longestWord.length() < word.length()) {
                 longestWord = word;
             }
         }
