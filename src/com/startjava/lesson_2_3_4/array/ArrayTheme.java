@@ -5,13 +5,13 @@ import java.util.Scanner;
 
 public class ArrayTheme {
     public static void main(String[] args) throws InterruptedException {
-        reverseArrayValues();
-        calculateFactorial();
-        deleteArrayElements();
-        printAlphabet();
-        fillArrayUniqueNumbers();
+//        reverseArrayValues();
+//        calculateFactorial();
+//        deleteArrayElements();
+//        printAlphabet();
+//        fillArrayUniqueNumbers();
         playGallow();
-        displayTextTypewriterEffect();
+//        displayTextTypewriterEffect();
     }
 
     private static void reverseArrayValues() {
@@ -168,72 +168,69 @@ public class ArrayTheme {
                 | 
                 """;
         String[] indexGallow = gallow.split("\n");
-        int countAttempt = indexGallow.length;
+        int countAttempts = indexGallow.length;
 
-        System.out.println("Исходное число попыток: " + countAttempt);
+        System.out.println("Исходное число попыток: " + countAttempts);
 
-        // Массив со словами, кладем в переменную случайоне слово из массива
+        // Массив со словами, кладем в переменную случайное слово из массива
         String[] words = {"Банан", "Апельсин", "Мандарин", "Арбуз", "Яблоко"};
         Random random = new Random();
-        String guessWord = words[random.nextInt(words.length)];
+        String guessedWord = words[random.nextInt(words.length)].toUpperCase();
 
-        // Создаем массив из символов загаданного слова и заменяем каждую букву знаком _
-        char[] word = new char[guessWord.length()];
-        for (char symbol : word) {
-            symbol = '_';
+        // Создаю объект класса StringBuilder и заменяю каждую букву на _
+        StringBuilder word = new StringBuilder(guessedWord);
+        for (int i = 0; i < word.length(); i++) {
+            word.replace(i, i + 1, "_");
         }
+
         System.out.println(word);
         Scanner sc = new Scanner(System.in);
+        String wrongLetters = "";
 
-        // Сама игра,
-        while (countAttempt != 0) {
+        // Сама игра
+        while (countAttempts != 0) {
             System.out.print("\nВведите букву: ");
-            char letter = sc.nextLine().charAt(0);
+            Character letter = sc.nextLine().toUpperCase().charAt(0);
             boolean isEqaulLetter = false;
 
-            // Проверяю, есть ли введенная буква в слове вне зависимости от введённого регистра,
-            // если да, то вставляю букву на её место
-            for (int i = 0; i < guessWord.length(); i++) {
-                if (Character.toLowerCase(letter) == guessWord.charAt(i)) {
-                    word[i] = Character.toLowerCase(letter);
-                    isEqaulLetter = true;
-                } else if (Character.toUpperCase(letter) == guessWord.charAt(i)) {
-                    word[i] = Character.toUpperCase(letter);
+            // Проверяю, есть ли введенная буква в слове, если да, то вставляю букву на её место
+            for (int i = 0; i < guessedWord.length(); i++) {
+                if  (letter == guessedWord.charAt(i)) {
+                    word.replace(i, i + 1, letter.toString());
                     isEqaulLetter = true;
                 }
             }
             if (!isEqaulLetter) {
-                countAttempt--;
-                // Отрисовываю виселицу в зависимости от количества попыток
-                for (int i = 0; i < indexGallow.length - countAttempt; i++) {
-                    System.out.println(indexGallow[i]);
-                }
-                System.out.println();
+                wrongLetters += letter + " ";
+                printGallow(indexGallow, --countAttempts);
             } else {
-                if (indexGallow.length > countAttempt) {
-                    countAttempt++;
+                if (countAttempts < indexGallow.length) {
+                    printGallow(indexGallow, ++countAttempts);
                 }
             }
 
-            // Вывожу получившееся слово, формирую строку для проверки
-            String resultingWord = "";
-            for (char symbol : word) {
-                System.out.print(symbol);
-                resultingWord += symbol;
+            // Вывожу получившееся слово
+            System.out.println(word);
+
+            System.out.println("\nОсталось попыток: " + countAttempts);
+            if (!wrongLetters.equals("")) {
+                System.out.println("Введённые неправильные буквы: " + wrongLetters);
             }
 
-            if (resultingWord.equals(guessWord)) {
+            if (word.toString().equals(guessedWord)) {
                 System.out.println("\nВы победили, игра окончена, поздравляю!");
                 break;
-            }
-
-            System.out.println("\nОсталось попыток: " + countAttempt);
-
-            // При окончании попыток выводится сообщение о проигрыше
-            if (countAttempt == 0) {
-                System.out.println("Вы проиграли и повисли!");
+            } else if (countAttempts == 0) {
+                System.out.println("Вы проиграли и повисли! Загаданное слово: " + guessedWord);
             }
         }
+    }
+
+    private static void printGallow(String[] array, int count) {
+        for (int i = 0; i < array.length - count; i++) {
+            System.out.println(array[i]);
+        }
+        System.out.println();
     }
 
     private static void displayTextTypewriterEffect() throws InterruptedException {

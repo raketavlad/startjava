@@ -10,11 +10,22 @@ public class CalculatorTest {
         while (!continuation.equals("no")) {
             if (continuation.equals("yes")) {
                 System.out.print("Введите математическое выражение: ");
-                double result = calc.calculate(sc.nextLine());
-                calc.printResult(result);
+                String mathematicalExpression = sc.nextLine();
+                printResult(calc.calculate(mathematicalExpression), mathematicalExpression);
             }
             System.out.print("Хотите продолжить вычисления? ");
             continuation = sc.nextLine();
+        }
+    }
+
+    private static void printResult(double resultCalculation, String mathematicalExpression) {
+        if (!Double.isNaN(resultCalculation)) {
+            System.out.print("Результат вычисления: " + mathematicalExpression + " = ");
+            if (resultCalculation % 1 == 0 && !Double.isNaN(resultCalculation)) {
+                System.out.printf("%.0f\n", resultCalculation);
+            } else {
+                System.out.printf("%.3f\n", resultCalculation);
+            }
         }
     }
 }
