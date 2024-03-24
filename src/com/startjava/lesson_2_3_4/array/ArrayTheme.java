@@ -10,7 +10,7 @@ public class ArrayTheme {
 //        deleteArrayElements();
 //        printAlphabet();
 //        fillArrayUniqueNumbers();
-        playGallow();
+        playHangman();
 //        displayTextTypewriterEffect();
     }
 
@@ -156,7 +156,7 @@ public class ArrayTheme {
         }
     }
 
-    private static void playGallow() {
+    private static void playHangman() {
         System.out.println("\n\n6. Игра \"Виселица\"");
         // Рисунок виселицы, разбиение рисунка на массив, количество ошибок = длине массива
         String gallow = """
@@ -167,8 +167,8 @@ public class ArrayTheme {
                 |  / \\
                 | 
                 """;
-        String[] indexGallow = gallow.split("\n");
-        int countAttempts = indexGallow.length;
+        String[] partsGallow = gallow.split("\n");
+        int countAttempts = partsGallow.length;
 
         System.out.println("Исходное число попыток: " + countAttempts);
 
@@ -178,46 +178,57 @@ public class ArrayTheme {
         String guessedWord = words[random.nextInt(words.length)].toUpperCase();
 
         // Создаю объект класса StringBuilder и заменяю каждую букву на _
-        StringBuilder word = new StringBuilder(guessedWord);
-        for (int i = 0; i < word.length(); i++) {
-            word.replace(i, i + 1, "_");
-        }
+        StringBuilder sb = new StringBuilder("_".repeat(guessedWord.length()));
+        System.out.println(sb);
 
-        System.out.println(word);
         Scanner sc = new Scanner(System.in);
         String wrongLetters = "";
 
         // Сама игра
         while (countAttempts != 0) {
             System.out.print("\nВведите букву: ");
-            Character letter = sc.nextLine().toUpperCase().charAt(0);
+            char letter = sc.nextLine().toUpperCase().charAt(0);
             boolean isEqaulLetter = false;
 
             // Проверяю, есть ли введенная буква в слове, если да, то вставляю букву на её место
             for (int i = 0; i < guessedWord.length(); i++) {
                 if  (letter == guessedWord.charAt(i)) {
-                    word.replace(i, i + 1, letter.toString());
+                    sb.setCharAt(i, letter);
                     isEqaulLetter = true;
                 }
             }
             if (!isEqaulLetter) {
-                wrongLetters += letter + " ";
-                printGallow(indexGallow, --countAttempts);
+                boolean isLetterInList = true;
+                for (int i = 0; i < wrongLetters.length(); i++) {
+                    if (wrongLetters.charAt(i) == letter) {
+                        isLetterInList = false;
+                        printGallow(partsGallow, countAttempts);
+                        break;
+                    }
+                }
+                if (isLetterInList) {
+                    wrongLetters += letter;
+                    printGallow(partsGallow, --countAttempts);
+                }
             } else {
-                if (countAttempts < indexGallow.length) {
-                    printGallow(indexGallow, ++countAttempts);
+                if (countAttempts < partsGallow.length) {
+                    printGallow(partsGallow, ++countAttempts);
                 }
             }
 
             // Вывожу получившееся слово
-            System.out.println(word);
-
+            System.out.println(sb);
+            //
             System.out.println("\nОсталось попыток: " + countAttempts);
+
             if (!wrongLetters.equals("")) {
-                System.out.println("Введённые неправильные буквы: " + wrongLetters);
+                System.out.print("Введённые неправильные буквы: ");
+                for (int i = 0; i < wrongLetters.length(); i++) {
+                    System.out.print(wrongLetters.charAt(i) + " ");
+                }
             }
 
-            if (word.toString().equals(guessedWord)) {
+            if (sb.toString().equals(guessedWord)) {
                 System.out.println("\nВы победили, игра окончена, поздравляю!");
                 break;
             } else if (countAttempts == 0) {
