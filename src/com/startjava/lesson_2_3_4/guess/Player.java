@@ -1,9 +1,11 @@
 package com.startjava.lesson_2_3_4.guess;
 
+import java.util.Arrays;
+
 public class Player {
 
     private String name;
-    private int number;
+    //private int number;
     private int[] numbers = new int[10];
     private int attempt;
 
@@ -16,27 +18,24 @@ public class Player {
     }
 
     public int getNumber() {
-        return number;
-    }
-
-    public void setNumber(int number) {
-        this.number = number;
+        return numbers[attempt - 1];
     }
 
     public void addNumber(int number) {
-        numbers[attempt] = number;
-        attempt++;
+        numbers[attempt++] = number;
     }
 
     public int[] getNumbers() {
-        return numbers;
+        int[] namedNumbers = Arrays.copyOf(numbers, attempt);
+        return namedNumbers;
     }
 
     public int getAttempt() {
         return attempt;
     }
 
-    public void setAttempt(int attempt) {
-        this.attempt = attempt;
+    public void clear() {
+        Arrays.fill(numbers, 0, attempt, 0);
+        attempt = 0;
     }
 }
