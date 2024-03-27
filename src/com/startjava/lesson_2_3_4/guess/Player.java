@@ -5,7 +5,6 @@ import java.util.Arrays;
 public class Player {
 
     private String name;
-    //private int number;
     private int[] numbers = new int[10];
     private int attempt;
 
@@ -26,8 +25,7 @@ public class Player {
     }
 
     public int[] getNumbers() {
-        int[] namedNumbers = Arrays.copyOf(numbers, attempt);
-        return namedNumbers;
+        return Arrays.copyOf(numbers, attempt);
     }
 
     public int getAttempt() {
