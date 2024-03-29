@@ -21,18 +21,18 @@ public class GuessNumber {
             if (isGuessed(player1, targetNumber)) {
                 break;
             }
-            boolean overAttemptsPlayer1 = isOverAttempts(player1);
+            boolean overAttemptsPlayer1 = hasAttempts(player1);
             enterNumber(player2, sc);
             if (isGuessed(player2, targetNumber)) {
                 break;
             }
-            boolean overAttemptsPlayer2 = isOverAttempts(player2);
+            boolean overAttemptsPlayer2 = hasAttempts(player2);
             if (overAttemptsPlayer1 && overAttemptsPlayer2) {
                 break;
             }
         }
-        showPlayerNumbers(player1);
-        showPlayerNumbers(player2);
+        printAllAttempts(player1);
+        printAllAttempts(player2);
         player1.clear();
         player2.clear();
     }
@@ -62,19 +62,19 @@ public class GuessNumber {
         return false;
     }
 
-    private void showPlayerNumbers(Player player) {
-        System.out.print("Числа введённые " + player.getName() + ": ");
-        for (int number : player.getNumbers()) {
-            System.out.print(number + " ");
-        }
-        System.out.println();
-    }
-
-    private boolean isOverAttempts(Player player) {
+    private boolean hasAttempts(Player player) {
         if (player.getAttempt() == 10) {
             System.out.println("У " + player.getName() + " закончились попытки");
             return true;
         }
         return false;
+    }
+
+    private void printAllAttempts(Player player) {
+        System.out.print("Числа введённые " + player.getName() + ": ");
+        for (int number : player.getNumbers()) {
+            System.out.print(number + " ");
+        }
+        System.out.println();
     }
 }
