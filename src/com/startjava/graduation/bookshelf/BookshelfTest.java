@@ -9,8 +9,8 @@ public class BookshelfTest {
         Scanner sc = new Scanner(System.in);
         while (!action.equals("5")) {
             // Выводится сообщение о пустом шкафе или сам шкаф
-            printBookshelf(bookshelf.getAllBooks(), bookshelf.getBooksCount(), bookshelf.getEmptyShelfsCount(),
-                    bookshelf.largestLength());
+            printBookshelf(bookshelf.getAllBooks(), bookshelf.getCountBooks(), bookshelf.getEmptyShelfsCount(),
+                    bookshelf.getLargestLength());
 
             // Выводится список доступных действий
             printAvailableActions();
@@ -21,28 +21,34 @@ public class BookshelfTest {
             // Свитч или иф-элс по обработке ввода и выполнения действий
             switch (action) {
                 case "1":
-                    if (bookshelf.getBooksCount() >= 10) {
+                    if (bookshelf.getCountBooks() >= 10) {
                         System.out.println("Шкаф переполнен, добавить книгу нельзя!");
                         break;
                     }
                     System.out.print("Введите автора книги: ");
                     String author = sc.nextLine();
                     System.out.print("Введите название книги: ");
-                    String bookName = sc.nextLine();
+                    String title = sc.nextLine();
                     System.out.print("Введите год публикации книги: ");
-                    int yearPubliching = sc.nextInt();
+                    int yearPublishing = sc.nextInt();
                     sc.nextLine();
-                    bookshelf.addBook(author, bookName, yearPubliching);
+                    Book book = new Book(author, title, yearPublishing);
+                    bookshelf.addBook(book);
                     break;
                 case "2":
                     System.out.print("Введите название книги, которую ищете: ");
-                    bookName = sc.nextLine();
-                    System.out.println(bookshelf.findBook(bookName));
+                    title = sc.nextLine();
+                    book = bookshelf.findBook(title);
+                    if (book == null) {
+                        System.out.println("Такой книги нет в шкафу!");
+                    } else {
+                        System.out.println("Книга " + book + " есть в шкафу");
+                    }
                     break;
                 case "3":
                     System.out.print("Введите название книги, которую хотите удалить: ");
-                    bookName = sc.nextLine();
-                    System.out.println(bookshelf.deleteBook(bookName));
+                    title = sc.nextLine();
+                    System.out.println(bookshelf.deleteBook(title));
                     break;
                 case "4":
                     bookshelf.clearBookshelf();
@@ -64,14 +70,14 @@ public class BookshelfTest {
         System.out.println(availableActions);
     }
 
-    private static void printBookshelf(String[] books, int bookCount, int emptyShelfCount, int largestLength) {
-        if (bookCount == 0) {
-            System.out.println("Шкаф пуст. Вы можете добавить в него первую книгу.");
+    private static void printBookshelf(Book[] books, int countBooks, int emptyShelfCount, int largestLength) {
+        if (countBooks == 0) {
+            System.out.println("\nШкаф пуст. Вы можете добавить в него первую книгу.");
         } else {
-            System.out.println("\nВ шкафу книг - " + bookCount + ", свободно полок - " + emptyShelfCount + "\n");
+            System.out.println("\nВ шкафу книг - " + countBooks + ", свободно полок - " + emptyShelfCount + "\n");
             StringBuilder sb = new StringBuilder();
-            for (String book : books) {
-                sb.append("|" + book + " ".repeat(largestLength - book.length()) + "|");
+            for (Book book : books) {
+                sb.append("|" + book + " ".repeat(largestLength - book.getInfoLength()) + "|");
                 System.out.println(sb);
                 sb.setLength(0);
                 sb.append("|" + "-".repeat(largestLength) + "|");
