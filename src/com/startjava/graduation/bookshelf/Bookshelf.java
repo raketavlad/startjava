@@ -1,25 +1,24 @@
 package com.startjava.graduation.bookshelf;
 
 import java.util.Arrays;
-
 import static java.util.Arrays.copyOf;
 
 public class Bookshelf {
-    private static final Book[] books = new Book[10];
+    private static final int booksArrayLength = 10;
+    private Book[] books = new Book[booksArrayLength];
     private int countBooks;
-    private int largestLength;
+    private int length;
 
     public int getCountBooks() {
         return countBooks;
     }
 
-    public int getLargestLength() {
-        return largestLength;
+    public int getLength() {
+        return length;
     }
 
     public Book[] getAllBooks() {
-        Book[] booksInShelf = copyOf(books, countBooks);
-        return booksInShelf;
+        return copyOf(books, countBooks);
     }
 
     public int getEmptyShelfsCount() {
@@ -27,28 +26,27 @@ public class Bookshelf {
     }
 
     public void addBook(Book book) {
-        books[countBooks] = book;
-        countBooks++;
-        largestLength();
+        books[countBooks++] = book;
+        updateLength();
     }
 
     public Book findBook(String title) {
-        Integer shelfNumber = findShelfNumber(title);
-        if (shelfNumber != null) {
+        int shelfNumber = findShelfNumber(title);
+        if (shelfNumber != -1) {
             return books[shelfNumber];
         }
         return null;
     }
 
-    public String deleteBook(String title) {
-        Integer shelfNumber = findShelfNumber(title);
-        if (shelfNumber == null) {
-            return "Такой книги нет в шкафу!";
+    public boolean deleteBook(String title) {
+        int shelfNumber = findShelfNumber(title);
+        if (shelfNumber == -1) {
+            return false;
         }
         System.arraycopy(books, shelfNumber + 1 , books, shelfNumber, countBooks - shelfNumber - 1);
         books[--countBooks] = null;
-        largestLength();
-        return "Книга удалена!";
+        updateLength();
+        return true;
     }
 
     public void clearBookshelf() {
@@ -56,21 +54,19 @@ public class Bookshelf {
         countBooks = 0;
     }
 
-    private void largestLength() {
-        largestLength = 0;
+    private void updateLength() {
+        length = 0;
         for (int i = 0; i < countBooks; i++) {
-            if (books[i].getInfoLength() > largestLength) {
-                largestLength = books[i].getInfoLength();
-            }
+            length = Math.max(books[i].getInfoLength(), length);
         }
     }
 
-    private Integer findShelfNumber(String title) {
+    private int findShelfNumber(String title) {
         for (int i = 0; i < countBooks; i++) {
             if (books[i].getTitle().equals(title)) {
                 return i;
             }
         }
-        return null;
+        return -1;
     }
 }
