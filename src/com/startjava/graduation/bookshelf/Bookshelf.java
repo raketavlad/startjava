@@ -1,11 +1,10 @@
 package com.startjava.graduation.bookshelf;
 
 import java.util.Arrays;
-import static java.util.Arrays.copyOf;
 
 public class Bookshelf {
-    private static final int booksArrayLength = 10;
-    private Book[] books = new Book[booksArrayLength];
+    private static final int capacity = 10;
+    private Book[] books = new Book[capacity];
     private int countBooks;
     private int length;
 
@@ -18,19 +17,19 @@ public class Bookshelf {
     }
 
     public Book[] getAllBooks() {
-        return copyOf(books, countBooks);
+        return Arrays.copyOf(books, countBooks);
     }
 
     public int getEmptyShelfsCount() {
-        return books.length - countBooks;
+        return capacity - countBooks;
     }
 
-    public void addBook(Book book) {
+    public void add(Book book) {
         books[countBooks++] = book;
         updateLength();
     }
 
-    public Book findBook(String title) {
+    public Book find(String title) {
         int shelfNumber = findShelfNumber(title);
         if (shelfNumber != -1) {
             return books[shelfNumber];
@@ -38,12 +37,12 @@ public class Bookshelf {
         return null;
     }
 
-    public boolean deleteBook(String title) {
+    public boolean delete(String title) {
         int shelfNumber = findShelfNumber(title);
         if (shelfNumber == -1) {
             return false;
         }
-        System.arraycopy(books, shelfNumber + 1 , books, shelfNumber, countBooks - shelfNumber - 1);
+        System.arraycopy(books, shelfNumber + 1, books, shelfNumber, countBooks - shelfNumber - 1);
         books[--countBooks] = null;
         updateLength();
         return true;
