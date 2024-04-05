@@ -3,10 +3,14 @@ package com.startjava.graduation.bookshelf;
 import java.util.Arrays;
 
 public class Bookshelf {
-    private static final int capacity = 10;
-    private Book[] books = new Book[capacity];
+    private static final int CAPACITY = 10;
+    private Book[] books = new Book[CAPACITY];
     private int countBooks;
     private int length;
+
+    public int getCapacity() {
+        return CAPACITY;
+    }
 
     public int getCountBooks() {
         return countBooks;
@@ -21,7 +25,7 @@ public class Bookshelf {
     }
 
     public int getEmptyShelfsCount() {
-        return capacity - countBooks;
+        return CAPACITY - countBooks;
     }
 
     public void add(Book book) {
