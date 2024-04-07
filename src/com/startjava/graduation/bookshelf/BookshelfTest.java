@@ -10,14 +10,10 @@ public class BookshelfTest {
         String action = "";
         while (!action.equals("5")) {
             printBookshelf();
-            if (!action.equals("")) {
-                System.out.print("\nДля продолжения нажмите Enter");
-                sc.nextLine();
-            }
+            continueWorking(action);
             printMenu();
             action = enterAction();
             doAction(action);
-
         }
     }
 
@@ -103,5 +99,12 @@ public class BookshelfTest {
     private static String enterTitle() {
         System.out.print("Введите название книги: ");
         return sc.nextLine();
+    }
+
+    private static void continueWorking(String action) {
+        if (!action.equals("")) {
+            System.out.print("\nДля продолжения нажмите Enter");
+            sc.nextLine();
+        }
     }
 }
