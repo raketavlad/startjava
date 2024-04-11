@@ -1,8 +1,8 @@
--- Создание БД
-CREATE DATABASE robots;
-
 -- Законнектиться к БД
 \c robots;
+
+-- Удаление таблицы
+DROP TABLE IF EXISTS jaegers;
 
 --Создать таблицу
 CREATE TABLE jaegers (
@@ -22,7 +22,3 @@ CREATE TABLE jaegers (
 
 -- Вызов скрипта с запросами
 \i queries.sql
-
--- Удаление таблицы
-\c postgres
-DROP DATABASE robots;
